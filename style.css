@@ -1,0 +1,188 @@
+:root {
+    /* General options */
+    --header-background-color: pink;
+    --header-height: 9rem;
+    --title-text-color: black;
+    --title-font-size: 3rem;
+    --title-font-family: Arial;
+    --title-font-size-minimized: 2rem;
+    --logo-width: 6rem;
+    --navigation-height: 3rem;
+    --navigation-background-color: gray;
+    --navigation-buttons-background-color: white;
+    --navigation-buttons-background-color-hover: lightgray;
+    --navigation-buttons-font-family: Arial;
+    --navigation-buttons-text-color: black;
+    --main-height: 1fr;
+    --footer-height: 4rem;
+    --footer-font-family: Arial;
+    --footer-font-size: 1rem;
+
+    /* Home options */
+    --paragraph-border-width: 1px;
+    --paragraph-border-color: black;
+
+    /* Voting options */
+    --voting-title-font-size: 1.5rem;
+    --voting-title-font-family: Arial;
+    --voting-table-header-font-size: 1rem;
+    --voting-table-header-font-family: Arial;
+    --voting-table-data-font-size: 1rem;
+    --voting-table-data-font-family: Arial;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-areas: "header"
+                         "navigation"
+                         "main"
+                         "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--header-height) var(--navigation-height) var(--main-height) var(--footer-height);
+    min-height: 100vh;
+}
+
+header {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 
+        [header-logo-start header-title-start] 1fr [header-logo-end] 2fr [header-title-end];
+    justify-content: center;
+    background-color: var(--header-background-color);
+}
+
+.logo {
+    grid-area: header-logo;
+    margin: 1rem;
+    aspect-ratio: 3158 / 3716;
+    width: var(--logo-width);
+}
+
+.title {
+    grid-area: header-title;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--title-font-size);
+    font-family: var(--title-font-family);
+    color: var(--title-text-color);
+}
+
+@media screen and (max-width: 550px) {
+    header {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .title {
+        font-size: var(--title-font-size-minimized);
+    }
+}
+
+nav {
+    grid-area: navigation;
+    background-color: var(--navigation-background-color);
+}
+
+nav > ul {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+nav > ul > li {
+    margin: 0.4rem;
+}
+
+nav > ul > li > a {
+    display: block;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    text-decoration: none;
+    font-family: var(--navigation-buttons-font-family);
+    color: var(--navigation-buttons-text-color);
+    background-color: var(--navigation-buttons-background-color);
+    transition: 0.1s;
+}
+
+nav > ul > li > a:hover {
+    background-color: var(--navigation-buttons-background-color-hover);
+}
+
+main {
+    grid-area: main;
+}
+
+#general-info {
+    display: grid;
+    padding: 0.6rem;
+    grid-template-columns: 
+        [content-start content-left-start] 1fr [content-left-end content-right-start] 1fr [content-right-end content-end];
+    grid-auto-rows: min-content;
+}
+
+#general-info > div {
+    margin: 0.3rem;
+    padding: 0.4rem;
+    border: var(--paragraph-border-width) solid var(--paragraph-border-color);
+}
+
+#general-info > .content-big {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.voting-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.voting-results > h2 {
+    margin: 0.6rem;
+    text-align: center;
+    font-size: var(--voting-title-font-size);
+    font-family: var(--voting-title-font-family);
+}
+
+.voting-results > table {
+    max-width: 50rem;
+    margin: 0.3rem;
+}
+
+.voting-results > table,
+.voting-results tr,
+.voting-results th,
+.voting-results td {
+    border: 1px solid black;
+    padding: 0.2rem;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.voting-results th {
+    font-size: var(--voting-table-header-font-size);
+    font-family: var(--voting-table-header-font-family);
+}
+
+.voting-results td {
+    font-size: var(--voting-table-data-font-size);
+    font-family: var(--voting-table-data-font-family);
+}
+
+footer {
+    grid-area: footer;
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--footer-font-size);
+    font-family: var(--footer-font-family);
+}
